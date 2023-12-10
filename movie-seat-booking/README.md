@@ -6,11 +6,11 @@ Display movie choices and seats in a theater to select from in order to purchase
 
 # Project Specifications
 - [x] Display UI with movie select, screen, seats, legend & seat info
-- [ ] User can select a movie/price
-- [ ] User can select/deselect seats
-- [ ] User can not select occupied seats
-- [ ] Number of seats and price will update
-- [ ] Save seats, movie and price to local storage so that UI is still populated on refresh 
+- [x] User can select a movie/price
+- [x] User can select/deselect seats
+- [x] User can not select occupied seats
+- [x] Number of seats and price will update
+- [x] Save seats, movie and price to local storage so that UI is still populated on refresh 
 
 # References
 - Challenge: https://github.com/bradtraversy/vanillawebprojects/tree/master/movie-seat-booking
