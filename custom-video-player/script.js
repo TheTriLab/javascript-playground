@@ -29,13 +29,12 @@ function updateProgress() {
     // Get the minutes
     let mins = Math.floor(video.currentTime / 60)
     
-    if (mins < video.duration) {
+    if (mins < 10) {
         mins = '0' + String(mins)
     }
 
     // Get the seconds
     let secs = Math.floor(video.currentTime % 60)
-    console.log('secs: ', secs, video.duration)
     if (secs < 10) {
         secs = '0' + String(secs)
     }
@@ -46,7 +45,7 @@ function updateProgress() {
 
 // Set video time to progress
 function setVideoProgress() {
-    video.currentTime = (+progress.value * video.duration)
+    video.currentTime = (+progress.value * video.duration) / 100
 }
 
 // Stop the video
