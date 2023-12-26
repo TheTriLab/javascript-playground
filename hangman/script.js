@@ -106,5 +106,22 @@ window.addEventListener('keydown', e => {
     }
 })
 
+// Restart game and play again
+playAgainBtn.addEventListener('click', () => {
+    playable = true
+
+    // Emty array
+    correctLetters.splice(0)
+    wrongLetters.splice(0)
+
+    selectedWord = words[Math.floor(Math.random() * words.length)]
+
+    displayWord()
+    updateWrongLettersEl()
+    popup.style.display = 'none'
+})
+
+displayWord()
+
 
 
