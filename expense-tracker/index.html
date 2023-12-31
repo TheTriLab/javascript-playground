@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">Expense Tracker</h1>
+        
+        <div class="balance-content">
+            <div id="balance-header">
+                <h2 class="title">Your Balance</h2>
+                <span class="total-expense">$7000</span>
+            </div>
+
+            <div id="source-category">
+                <div id="total-income" class="source-item">
+                    <span class="source-item-title">INCOME</span>
+                    <span class="source-item-money">$100000</span>
+                </div>
+
+                <div id="total-expense" class="source-item">
+                    <span class="source-item-title">Expense</span>
+                    <span class="source-item-money">$3000</span>
+                </div>
+            </div>
+
+            <div id="transaction-history">
+                <div class="history-item">
+                    <span>Salary</span>
+                    <span>+100000</span>
+                </div>
+                <div class="history-item">
+                    <span>Drink</span>
+                    <span>-3000</span>
+                </div>
+            </div>
+
+            <div id="transaction-form">
+                <div id="transaction-title">
+                    <label for="transaction-title">Text</label>
+                    <input
+                        id="transaction-title"
+                        type="text"
+                        name="transaction-title"
+                        placeholder="Enter text..."
+                    >
+                </div>
+
+                <div id="transaction-amount">
+                    <label for="transaction-amount">
+                        Amount<br/>
+                        (negative - expense, positive - income)
+                    </label>
+                    <input
+                        id="transaction-amount"
+                        type="number"
+                        name="transaction-amount"
+                        placeholder="Enter amount..."
+                    >
+                </div>
+
+                <button id="transaction-submit" type="submit">Add transaction</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
