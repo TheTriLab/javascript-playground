@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+:root {
+    --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -22,7 +28,68 @@ body {
     margin: 30px auto;
 }
 
+h2.title {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
 .total-expense {
     letter-spacing: 1px;
     font-size: 32px;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+}
+
+.big-card {
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.small-card {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.source-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.source-item-title {
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.source-item-money {
+    letter-spacing: 1;
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+#source-category .source-item:first-of-type {
+    border-right: 1px solid #dedede;
+}
+
+#source-category .source-item:first-of-type .source-item-money {
+    color: #2ECC71;
+}
+
+#source-category .source-item:nth-of-type(2) .source-item-money {
+    color: #C0392B;
+}
+
+.history-plus {
+    border-right: 5px solid #2ecc71;
+}
+
+.history-minus {
+    border-right: 5px solid #c0392b;
 }

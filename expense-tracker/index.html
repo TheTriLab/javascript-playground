@@ -16,12 +16,11 @@
                 <span class="total-expense">$7000</span>
             </div>
 
-            <div id="source-category">
+            <div id="source-category" class="card big-card">
                 <div id="total-income" class="source-item">
                     <span class="source-item-title">INCOME</span>
                     <span class="source-item-money">$100000</span>
                 </div>
-
                 <div id="total-expense" class="source-item">
                     <span class="source-item-title">Expense</span>
                     <span class="source-item-money">$3000</span>
@@ -29,41 +28,55 @@
             </div>
 
             <div id="transaction-history">
-                <div class="history-item">
-                    <span>Salary</span>
-                    <span>+100000</span>
+                <div>
+                    <h3>History</h3>
+                    <hr>
                 </div>
-                <div class="history-item">
-                    <span>Drink</span>
-                    <span>-3000</span>
+
+                <div>
+                    <div class="history-item card small-card history-plus">
+                        <span>Salary</span>
+                        <span>+100000</span>
+                    </div>
+                    <div class="history-item card small-card history-minus">
+                        <span>Drink</span>
+                        <span>-3000</span>
+                    </div>
                 </div>
             </div>
 
             <div id="transaction-form">
-                <div id="transaction-title">
-                    <label for="transaction-title">Text</label>
-                    <input
-                        id="transaction-title"
-                        type="text"
-                        name="transaction-title"
-                        placeholder="Enter text..."
-                    >
+                <div>
+                    <h3>History</h3>
+                    <hr>
                 </div>
 
-                <div id="transaction-amount">
-                    <label for="transaction-amount">
-                        Amount<br/>
-                        (negative - expense, positive - income)
-                    </label>
-                    <input
-                        id="transaction-amount"
-                        type="number"
-                        name="transaction-amount"
-                        placeholder="Enter amount..."
-                    >
+                <div>
+                    <div id="transaction-title">
+                        <label for="transaction-title">Text</label>
+                        <input
+                            id="transaction-title"
+                            type="text"
+                            name="transaction-title"
+                            placeholder="Enter text..."
+                        >
+                    </div>
+    
+                    <div id="transaction-amount">
+                        <label for="transaction-amount">
+                            Amount<br/>
+                            (negative - expense, positive - income)
+                        </label>
+                        <input
+                            id="transaction-amount"
+                            type="number"
+                            name="transaction-amount"
+                            placeholder="Enter amount..."
+                        >
+                    </div>
+    
+                    <button id="transaction-submit" type="submit">Add transaction</button>
                 </div>
-
-                <button id="transaction-submit" type="submit">Add transaction</button>
             </div>
         </div>
     </div>
