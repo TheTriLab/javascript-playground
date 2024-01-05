@@ -1,6 +1,9 @@
 
 const form = document.getElementById('transaction-form')
-let transactionHistoryItems = []
+
+
+const localStorageTransactions = JSON.parse(localStorage.getItem('transactions'))
+let transactionHistoryItems = localStorage.getItem('transactions') !== null ? localStorageTransactions : []
 
 
 function addTransaction(e) {
@@ -22,6 +25,7 @@ function addTransaction(e) {
         }
 
         transactionHistoryItems.push(newItem)
+        updateLocalStorage()
 
         addTransactionDOM(newItem)
 
@@ -52,6 +56,11 @@ function addTransactionDOM(transaction) {
     // Insert new transaction items to history UI
     const historySectionContent = document.getElementById('transaction-history')
     historySectionContent.appendChild(item)
+}
+
+// Update local storage
+function updateLocalStorage() {
+    localStorage.setItem('transactions', JSON.stringify(transactionHistoryItems))
 }
 
 form.addEventListener('submit', addTransaction)
