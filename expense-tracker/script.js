@@ -1,9 +1,17 @@
 
 const form = document.getElementById('transaction-form')
-
+const historySectionContent = document.getElementById('transaction-history')
+const totalIncomeEl = document.getElementById('total-income')
+const totalExpenseEl = document.getElementById('total-expense')
 
 const localStorageTransactions = JSON.parse(localStorage.getItem('transactions'))
+const localStorageIncome = JSON.parse(localStorage.getItem('total-income'))
+const localStorageExpense = JSON.parse(localStorage.getItem('total-expense'))
+
+
 let transactionHistoryItems = localStorage.getItem('transactions') !== null ? localStorageTransactions : []
+let totalIncome = !isNaN(localStorageIncome) ? +localStorageIncome : 0
+let totalExpense = !isNaN(localStorageExpense) ? +localStorageExpense : 0
 
 
 function addTransaction(e) {
@@ -21,12 +29,20 @@ function addTransaction(e) {
     } else {
         const newItem = {
             title: transactionTitle.trim(),
-            amount: transactionAmount.trim()
+            amount: +transactionAmount.trim()
         }
 
         transactionHistoryItems.push(newItem)
-        updateLocalStorage()
+        if (newItem.amount > 0) {
+            totalIncome += newItem.amount
+        }
 
+        if (newItem.amount > 0) {
+            totalExpense += newItem.amount
+        }
+
+
+        updateLocalStorage()
         addTransactionDOM(newItem)
 
         // Reset inputs after item is added to the list
@@ -36,6 +52,12 @@ function addTransaction(e) {
 
 // Add transaction to DOM list
 function addTransactionDOM(transaction) {
+    // Delete no history message before adding the first item
+    if (transactionHistoryItems.length === 0) {
+        const noHistoryEl =  historySectionContent.getElementsByTagName('p')[0]
+        noHistoryEl ? noHistoryEl.remove() : null
+    }
+    
     // Get sign
     const sign = transaction.amount < 0 ? '-' : '+'
 
@@ -54,13 +76,48 @@ function addTransactionDOM(transaction) {
         <span>${sign}${Math.abs(transaction.amount)}</span>
     `
     // Insert new transaction items to history UI
-    const historySectionContent = document.getElementById('transaction-history')
     historySectionContent.appendChild(item)
 }
 
 // Update local storage
 function updateLocalStorage() {
     localStorage.setItem('transactions', JSON.stringify(transactionHistoryItems))
+    localStorage.setItem('total-income', totalIncome)
+    localStorage.setItem('total-income', totalExpense)
 }
 
+// Render income
+function renderIncome(val) {
+    totalIncome.innerText = val
+}
+
+// Render expense
+function renderExpense(val) {
+    totalExpense.innerText = val
+}
+
+// Render and init expense tracker at the beginning
+function initExpenseTracker() {
+
+    // Render transaction history
+    if (transactionHistoryItems.length > 0) {
+        transactionHistoryItems.forEach((e) => {
+            addTransactionDOM(e)
+        })
+    } else {
+        const noHistory = document.createElement('p')
+        noHistory.innerText = 'No transaction history'
+
+        historySectionContent.append(noHistory)
+    }
+    console.log(totalIncome, totalExpense)
+    // Render income
+    renderIncome(totalIncome)
+
+    // Render expense
+    renderExpense(totalExpense)
+}
+
+
+initExpenseTracker()
 form.addEventListener('submit', addTransaction)
