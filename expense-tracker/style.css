@@ -103,6 +103,10 @@ h2.title {
     position: relative;
 }
 
+.history-item:hover > .close {
+    opacity: 1;
+}
+
 .history-plus {
     border-right: 5px solid #2ecc71;
 }
@@ -121,10 +125,12 @@ h2.title {
     padding: 2px 5px;
     color: #fff;
     background-color: #e74c3c;
-    /* opacity: 0; */
+    opacity: 0;
     transition: opacity 0.3s ease;
     cursor: pointer;
 }
+
+
 
 .form-input {
     display: flex;

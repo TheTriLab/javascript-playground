@@ -3,6 +3,7 @@ const form = document.getElementById('transaction-form')
 const historySectionContent = document.getElementById('transaction-history')
 const totalIncomeEl = document.getElementById('total-income')
 const totalExpenseEl = document.getElementById('total-expense')
+const totalBalanceEl = document.getElementById('total-balance')
 
 const localStorageTransactions = JSON.parse(localStorage.getItem('transactions'))
 const localStorageIncome = JSON.parse(localStorage.getItem('total-income'))
@@ -37,13 +38,14 @@ function addTransaction(e) {
             totalIncome += newItem.amount
         }
 
-        if (newItem.amount > 0) {
+        if (newItem.amount < 0) {
             totalExpense += newItem.amount
         }
 
 
         updateLocalStorage()
         addTransactionDOM(newItem)
+        updateAmountDOM()
 
         // Reset inputs after item is added to the list
         e.target.reset()
@@ -79,21 +81,33 @@ function addTransactionDOM(transaction) {
     historySectionContent.appendChild(item)
 }
 
+// Update amount UI
+function updateAmountDOM() {
+    renderIncome()
+    renderExpense()
+    renderBalance()
+}
+
 // Update local storage
 function updateLocalStorage() {
     localStorage.setItem('transactions', JSON.stringify(transactionHistoryItems))
     localStorage.setItem('total-income', totalIncome)
-    localStorage.setItem('total-income', totalExpense)
+    localStorage.setItem('total-expense', totalExpense)
 }
 
 // Render income
-function renderIncome(val) {
-    totalIncome.innerText = val
+function renderIncome() {
+    totalIncomeEl.innerText = `$${totalIncome}`
 }
 
 // Render expense
-function renderExpense(val) {
-    totalExpense.innerText = val
+function renderExpense() {
+    totalExpenseEl.innerText = `$${totalExpense}`
+}
+
+// Render balance
+function renderBalance() {
+    totalBalanceEl.innerText = `$${totalIncome + totalExpense}`
 }
 
 // Render and init expense tracker at the beginning
@@ -110,12 +124,9 @@ function initExpenseTracker() {
 
         historySectionContent.append(noHistory)
     }
-    console.log(totalIncome, totalExpense)
-    // Render income
-    renderIncome(totalIncome)
-
-    // Render expense
-    renderExpense(totalExpense)
+    
+    // Render income, expense, balance
+    updateAmountDOM()
 }
 
 
