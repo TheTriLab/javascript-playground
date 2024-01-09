@@ -29,6 +29,7 @@ function addTransaction(e) {
         alert('Please add a amount');
     } else {
         const newItem = {
+            id: generateID(),
             title: transactionTitle.trim(),
             amount: +transactionAmount.trim()
         }
@@ -73,7 +74,7 @@ function addTransactionDOM(transaction) {
     )
 
     item.innerHTML = `
-        <span class="close">x</span>
+        <span class="close" onclick="removeTransaction(${transaction.id})">x</span>
         <span>${transaction.title}</span>
         <span>${sign}${Math.abs(transaction.amount)}</span>
     `
@@ -95,6 +96,11 @@ function updateLocalStorage() {
     localStorage.setItem('total-expense', totalExpense)
 }
 
+// Generate ID
+function generateID() {
+        return Math.floor(Math.random() * 100000000)
+}
+
 // Render income
 function renderIncome() {
     totalIncomeEl.innerText = `$${totalIncome}`
@@ -112,6 +118,8 @@ function renderBalance() {
 
 // Render and init expense tracker at the beginning
 function initExpenseTracker() {
+    historySectionContent.innerHTML = ''
+    
 
     // Render transaction history
     if (transactionHistoryItems.length > 0) {
@@ -127,6 +135,22 @@ function initExpenseTracker() {
     
     // Render income, expense, balance
     updateAmountDOM()
+}
+
+// Delete a transaction item
+function removeTransaction(id) {
+    const removedTransactionItem = transactionHistoryItems.find(e => e.id === id)
+    transactionHistoryItems = transactionHistoryItems.filter(transaction => transaction.id !== id)
+
+    if (removedTransactionItem.amount < 0) {
+        totalExpense -= removedTransactionItem.amount
+    } 
+    if (removedTransactionItem.amount > 0) {
+        totalIncome -= removedTransactionItem.amount
+    }
+
+    updateLocalStorage()
+    initExpenseTracker()
 }
 
 
