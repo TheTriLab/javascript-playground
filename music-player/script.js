@@ -16,5 +16,5 @@ playBtn.addEventListener('click', (e) => {
     playIcon.classList.toggle('fa-pause')
 
     // Toggle play status
-    isPlay = !isPlay
+    // isPlay = !isPlay
 })
