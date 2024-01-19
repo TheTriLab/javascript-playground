@@ -98,3 +98,10 @@ body {
     font-size: 30px;
     color: #cdc2d0;
 }
+
+.music-info {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: calc(100% - 40px);
+}
