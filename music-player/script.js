@@ -3,11 +3,10 @@ const playBtn = document.getElementById('play')
 const playIcon = playBtn.querySelector('i')
 const discEl = document.getElementById('disc')
 
-
 let isPlay = true
 
 
-playBtn.addEventListener('click', (e) => {
+playBtn.addEventListener('click', () => {
     // Toggle play class for player
     playerContainer.classList.toggle('play')
     
