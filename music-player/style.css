@@ -105,4 +105,13 @@ body {
     top: 0;
     left: 20px;
     width: calc(100% - 40px);
+    transition: transform 0.2s ease-in, opacity 0.2s ease-in;
+    background: #fff;
+    opacity: 0;
+    z-index: 0;
+}
+
+.play .music-info {
+    transform: translateY(-100%);
+    opacity: 1;
 }
