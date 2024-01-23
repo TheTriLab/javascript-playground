@@ -2,11 +2,16 @@ const playerContainer = document.getElementById('player')
 const playBtn = document.getElementById('play')
 const playIcon = playBtn.querySelector('i')
 const discEl = document.getElementById('disc')
+const audioEl = document.getElementById('audio')
 
-let isPlay = true
+
+
 
 
 playBtn.addEventListener('click', () => {
+    // Check the audio play status
+    const isPlay = !audioEl.paused && audioEl.currentTime > 0
+
     // Toggle play class for player
     playerContainer.classList.toggle('play')
     
@@ -14,6 +19,10 @@ playBtn.addEventListener('click', () => {
     playIcon.classList.toggle('fa-play')
     playIcon.classList.toggle('fa-pause')
 
-    // Toggle play status
-    // isPlay = !isPlay
+    // Play audio
+    if (isPlay) {
+        audioEl.pause()
+    } else {
+        audioEl.play()
+    }
 })
