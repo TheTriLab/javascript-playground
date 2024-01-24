@@ -1,6 +1,8 @@
 const playerContainer = document.getElementById('player')
 const playBtn = document.getElementById('play')
 const playIcon = playBtn.querySelector('i')
+const nextBtn = document.getElementById('next')
+const prevBtn = document.getElementById('prev')
 const discEl = document.getElementById('disc')
 const audioEl = document.getElementById('audio')
 
@@ -25,4 +27,14 @@ playBtn.addEventListener('click', () => {
     } else {
         audioEl.play()
     }
+})
+
+// Click next button
+nextBtn.addEventListener('click', () => {
+
+})
+
+// Click previous button
+prevBtn.addEventListener('click', () => {
+    
 })
