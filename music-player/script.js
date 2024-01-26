@@ -5,6 +5,7 @@ const nextBtn = document.getElementById('next')
 const prevBtn = document.getElementById('previous')
 const discEl = document.getElementById('disc')
 const audioEl = document.getElementById('audio')
+const progressEl = document.getElementById('progress')
 
 const audioPlayList = [
     {
@@ -26,6 +27,30 @@ const audioPlayList = [
 
 let currentAudio = audioPlayList[0]
 
+
+function loadAudio() {
+    // Check the audio play status
+    const isPlay = !audioEl.paused && audioEl.currentTime > 0
+
+    // Load audio info
+    audioEl.setAttribute('src', currentAudio.audioUrl)
+    discEl.setAttribute('src', currentAudio.avatarUrl)
+    discEl.setAttribute('alt', currentAudio.name)
+
+    // Play audio
+    if (isPlay) {
+        audioEl.play()
+    } else {
+        audioEl.pause()
+    }
+}
+
+// Set video time to progress
+function updateProgress() {
+    progressEl.style.width = `${(audioEl.currentTime / audioEl.duration) * 100}%`
+}
+
+// Play and pause
 playBtn.addEventListener('click', () => {
     // Check the audio play status
     const isPlay = !audioEl.paused && audioEl.currentTime > 0
@@ -45,23 +70,6 @@ playBtn.addEventListener('click', () => {
     }
 })
 
-function loadAudio() {
-    // Check the audio play status
-    const isPlay = !audioEl.paused && audioEl.currentTime > 0
-
-    // Load audio info
-    audioEl.setAttribute('src', currentAudio.audioUrl)
-    discEl.setAttribute('src', currentAudio.avatarUrl)
-    discEl.setAttribute('alt', currentAudio.name)
-
-    // Play audio
-    if (isPlay) {
-        audioEl.play()
-    } else {
-        audioEl.pause()
-    }
-}
-
 // Click next button
 nextBtn.addEventListener('click', () => {
     const currentAudioIndex = audioPlayList.findIndex(e => e.name === currentAudio.name)
@@ -80,3 +88,5 @@ prevBtn.addEventListener('click', () => {
     loadAudio()
 })
 
+// Time update
+audioEl.addEventListener('timeupdate', updateProgress)
